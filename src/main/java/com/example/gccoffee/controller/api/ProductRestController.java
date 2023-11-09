@@ -1,4 +1,4 @@
-package com.example.gccoffee.api;
+package com.example.gccoffee.controller.api;
 
 import com.example.gccoffee.model.Category;
 import com.example.gccoffee.model.Product;
