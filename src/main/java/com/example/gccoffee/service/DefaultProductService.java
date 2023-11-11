@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -24,15 +25,23 @@ public class DefaultProductService implements ProductService {
     }
 
     @Override
+    public Optional<Product> getProductById(UUID productId) {
+        return productRepository.findById(productId);
+    }
+
+    @Override
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
 
     @Override
-    public Product createProduct(String productName, Category category, long price) {
-        Product product = new Product(UUID.randomUUID(), productName, category, price);
+    public void deleteProductById(UUID productId) {
+        productRepository.deleteById(productId);
+    }
 
-        return productRepository.insert(product);
+    @Override
+    public void deleteAllProducts() {
+        productRepository.deleteAll();
     }
 
     @Override
@@ -46,5 +55,10 @@ public class DefaultProductService implements ProductService {
                 LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS));
 
         return productRepository.insert(product);
+    }
+
+    @Override
+    public Product updateProduct(UUID productId, String productName, Category category, long price, String description) {
+        return productRepository.update(new Product(productId, productName, category, price, description));
     }
 }
