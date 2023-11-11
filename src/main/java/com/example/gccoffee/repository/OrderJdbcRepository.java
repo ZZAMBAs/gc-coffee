@@ -26,7 +26,7 @@ public class OrderJdbcRepository implements OrderRepository {
                         "VALUES (UUID_TO_BIN(:orderId), :email, :address, :postcode, :orderStatus, :createdAt, :updatedAt)",
                 toOrderParamMap(order));
         order.getOrderItems().forEach(item -> jdbcTemplate.update("INSERT INTO order_items (order_id, product_id, category, price, quantity, created_at, updated_at) " +
-                        "VALUES (UUID_TO_BIN(:orderId), :productId, :category, :price, :quantity, :createdAt, :updatedAt)",
+                        "VALUES (UUID_TO_BIN(:orderId), UUID_TO_BIN(:productId), :category, :price, :quantity, :createdAt, :updatedAt)",
                 toOrderItemParamMap(order.getOrderId(), order.getCreatedAt(), order.getUpdatedAt(), item)));
 
         return order;
@@ -50,8 +50,8 @@ public class OrderJdbcRepository implements OrderRepository {
         HashMap<String, Object> hashMap = new HashMap<>();
 
         hashMap.put("orderId", orderId.toString().getBytes());
-        hashMap.put("productId", orderItem.productId());
-        hashMap.put("category", orderItem.category());
+        hashMap.put("productId", orderItem.productId().toString().getBytes());
+        hashMap.put("category", orderItem.category().toString());
         hashMap.put("price", orderItem.price());
         hashMap.put("quantity", orderItem.quantity());
         hashMap.put("createdAt", createdAt);
