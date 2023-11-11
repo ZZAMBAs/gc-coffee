@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -32,5 +33,20 @@ public class DefaultOrderService implements OrderService {
                 LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS));
 
         return orderRepository.insert(order);
+    }
+
+    @Override
+    public List<Order> findAll() {
+        return orderRepository.findAll();
+    }
+
+    @Override
+    public Optional<Order> findOrderById(UUID orderId) {
+        return orderRepository.findById(orderId);
+    }
+
+    @Override
+    public void deleteOrderById(UUID orderId) {
+        orderRepository.deleteById(orderId);
     }
 }
