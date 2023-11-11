@@ -1,5 +1,6 @@
 package com.example.gccoffee.model;
 
 public enum Category {
-    COFFEE_BEAN_PACKAGE
+    COFFEE_BEAN_PACKAGE,
+    COFFEE_TRASH
 }
