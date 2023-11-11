@@ -27,11 +27,8 @@ public class ProductJdbcRepository implements ProductRepository {
 
     @Override
     public Product insert(Product product) {
-        var updateCnt = jdbcTemplate.update("INSERT INTO products VALUES (UUID_TO_BIN(:productId), :productName, :category, :price, :description, :createdAt, :updatedAt)",
+        jdbcTemplate.update("INSERT INTO products VALUES (UUID_TO_BIN(:productId), :productName, :category, :price, :description, :createdAt, :updatedAt)",
                 toParamMap(product));
-        if (updateCnt != 1) {
-            throw new RuntimeException("업데이트 된 값이 없거나 여러 건입니다.");
-        }
         return product;
     }
 
