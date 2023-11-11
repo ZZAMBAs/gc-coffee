@@ -1,6 +1,6 @@
 package com.example.gccoffee.controller;
 
-import com.example.gccoffee.controller.dto.CreateProductRequest;
+import com.example.gccoffee.controller.dto.ProductRequest;
 import com.example.gccoffee.model.Product;
 import com.example.gccoffee.service.ProductService;
 import org.springframework.stereotype.Controller;
@@ -33,11 +33,11 @@ public class ProductController {
     }
 
     @PostMapping("/products")
-    public String newProduct(CreateProductRequest createProductRequest) {
-        productService.createProduct(createProductRequest.productName(),
-                createProductRequest.category(),
-                createProductRequest.price(),
-                createProductRequest.description());
+    public String newProduct(ProductRequest productRequest) {
+        productService.createProduct(productRequest.productName(),
+                productRequest.category(),
+                productRequest.price(),
+                productRequest.description());
         return "redirect:/products";
     }
 }
