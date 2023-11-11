@@ -2,7 +2,10 @@ package com.example.gccoffee.controller.dto;
 
 import com.example.gccoffee.model.Category;
 
-public record ProductRequest(String productName,
+import java.util.UUID;
+
+public record ProductRequest(UUID productId,
+                             String productName,
                              Category category,
                              long price,
                              String description) {
