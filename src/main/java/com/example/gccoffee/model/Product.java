@@ -22,6 +22,16 @@ public class Product {
         this.updatedAt = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
     }
 
+    public Product(UUID productId, String productName, Category category, long price, String description) {
+        this.productId = productId;
+        this.productName = productName;
+        this.category = category;
+        this.price = price;
+        this.description = description;
+        this.createdAt = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
+        this.updatedAt = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
+    }
+
     public Product(UUID productId, String productName, Category category, long price, String description, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.productId = productId;
         this.productName = productName;
