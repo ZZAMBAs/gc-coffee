@@ -23,7 +23,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="product : ${products}" th:object="${product}">
+    <tr th:each="product : ${products}" th:object="${product}" th:product-id="*{getProductId()}" onclick="onDetail(this)">
       <td th:text="*{productId}"></td>
       <td th:text="*{productName}"></td>
       <td th:text="*{category}"></td>
@@ -35,4 +35,11 @@
     </tbody>
   </table>
 </body>
+<script>
+  const onDetail = (obj) => {
+    const productId = obj.getAttribute("product-id");
+
+    window.location.href = "/products/" + productId;
+  }
+</script>
 </html>
