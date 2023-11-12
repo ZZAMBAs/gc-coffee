@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>상품 상세 페이지</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body class="p-3 m-0 border-0 bd-example m-0 border-0" th:object="${product}">
+<form action="#" method="post">
+    <div class="mb-3">
+        <label for="product-id" class="form-label">ID</label>
+        <input readonly type="text" class="form-control" id="product-id" th:name="productId" th:value="*{getProductId()}">
+    </div>
+    <div class="mb-3">
+        <label for="product-name" class="form-label">상품 이름</label>
+        <input type="text" class="form-control" id="product-name" th:name="productName" th:value="*{getProductName()}">
+    </div>
+    <div class="mb-3">
+        <label for="product-category" class="form-label">카테고리</label>
+        <select id="product-category" th:field="*{category}" th:name="category" class="form-select">
+            <optgroup label="Product Category">
+                <option value="COFFEE_BEAN_PACKAGE" th:selected="${*{getCategory.toString()}.equals('COFFEE_BEAN_PACKAGE')}">Coffee bean package</option>
+                <option value="COFFEE_TRASH" th:selected="${*{getCategory.toString()}.equals('COFFEE_TRASH')}">Coffee trash</option>
+            </optgroup>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="product-price" class="form-label">상품 가격</label>
+        <input type="number" class="form-control" id="product-price" th:name="productPrice" th:value="*{getPrice()}">
+    </div>
+    <div class="mb-3">
+        <label for="product-description" class="form-label">상품 설명</label>
+        <input type="text" class="form-control" id="product-description" th:name="description" th:value="*{getDescription()}">
+    </div>
+    <div class="mb-3">
+        <label for="product-created-at" class="form-label">생성 일자</label>
+        <input readonly type="text" class="form-control" th:name="createdAt" id="product-created-at"
+               th:value="${#temporals.format(*{getCreatedAt()}, 'yyyy-MM-dd HH:mm:ss:SSS')}">
+    </div>
+    <div class="mb-3">
+        <label for="product-updated-at" class="form-label">최근 업데이트 일자</label>
+        <input readonly type="text" class="form-control" th:name="updatedAt" id="product-updated-at"
+               th:value="${#temporals.format(*{getUpdatedAt()}, 'yyyy-MM-dd HH:mm:ss:SSS')}">
+    </div>
+
+    <div class="d-flex justify-content-end ">
+        <button type="submit" class="btn btn-outline-primary m-1">Submit</button>
+        <button type="reset" class="btn btn-outline-warning m-1">Clear</button>
+        <button type="button" class="btn btn-outline-dark m-1" onclick="history.back()">Cancel</button>
+    </div>
+</form>
+</body>
+</html>
