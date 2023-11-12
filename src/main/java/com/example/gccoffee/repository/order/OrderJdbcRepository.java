@@ -49,7 +49,8 @@ public class OrderJdbcRepository implements OrderRepository {
     @Override
     public Optional<Order> findById(UUID orderId) {
         return jdbcTemplate.query("SELECT o.order_id, o.email, o.address, o.postcode, o.order_status, o.created_at, o.updated_at, " +
-                        "oi.product_id, oi.category, oi.price, oi.quantity FROM orders o JOIN order_items oi ON o.order_id = oi.order_id " +
+                        "oi.product_id, oi.category, oi.price, oi.quantity FROM orders o " +
+                        "LEFT JOIN order_items oi ON o.order_id = oi.order_id " +
                         "WHERE o.order_id = UUID_TO_BIN(:orderId) " +
                         "ORDER BY o.order_id",
                 Collections.singletonMap("orderId", orderId.toString().getBytes()),
@@ -59,7 +60,7 @@ public class OrderJdbcRepository implements OrderRepository {
     @Override
     public List<Order> findAll() {
         return jdbcTemplate.query("SELECT o.order_id, o.email, o.address, o.postcode, o.order_status, o.created_at, o.updated_at, " +
-                "oi.product_id, oi.category, oi.price, oi.quantity FROM orders o JOIN order_items oi ON o.order_id = oi.order_id " +
+                "oi.product_id, oi.category, oi.price, oi.quantity FROM orders o LEFT JOIN order_items oi ON o.order_id = oi.order_id " +
                 "ORDER BY o.order_id",
                 this::orderResultSetExtractor);
     }
@@ -127,6 +128,10 @@ public class OrderJdbcRepository implements OrderRepository {
                             updatedAt));
                 }
                 Order order = orderMap.get(orderId);
+
+                if (rs.getBytes("product_id") == null) {
+                    continue;
+                }
 
                 UUID productId = toUUID(rs.getBytes("product_id"));
                 Category category = Category.valueOf(rs.getString("category"));
