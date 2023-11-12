@@ -49,4 +49,9 @@ public class DefaultOrderService implements OrderService {
     public void deleteOrderById(UUID orderId) {
         orderRepository.deleteById(orderId);
     }
+
+    @Override
+    public void deleteAll() {
+        orderRepository.deleteAll();
+    }
 }

@@ -13,4 +13,5 @@ public interface OrderService {
     List<Order> findAll();
     Optional<Order> findOrderById(UUID orderId);
     void deleteOrderById(UUID orderId);
+    void deleteAll();
 }
