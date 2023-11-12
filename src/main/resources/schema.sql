@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS products (
     updated_at DATETIME(6) DEFAULT NULL
 );
 
-CREATE TABLE orders (
+CREATE TABLE IF NOT EXISTS orders (
     order_id BINARY(16) PRIMARY KEY,
     email VARCHAR(50) NOT NULL,
     address VARCHAR(200) NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE orders (
     updated_at DATETIME(6) DEFAULT NULL
 );
 
-CREATE TABLE order_items (
+CREATE TABLE IF NOT EXISTS order_items (
     seq BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     order_id BINARY(16) NOT NULL,
     product_id BINARY(16) NOT NULL,
