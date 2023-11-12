@@ -1,6 +1,5 @@
 package com.example.gccoffee.service.order;
 
-import com.example.gccoffee.exception.EntityNotFoundException;
 import com.example.gccoffee.model.Email;
 import com.example.gccoffee.model.Order;
 import com.example.gccoffee.model.OrderItem;
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -38,11 +38,14 @@ public class DefaultOrderService implements OrderService {
 
     @Override
     public Order update(UUID orderId, String address, String postcode, OrderStatus orderStatus) {
-        Order order = this.findOrderById(orderId)
-                .orElseThrow(() -> new EntityNotFoundException("주문을 찾을 수 없습니다."));
-
-        order.changeInfo(address, postcode, orderStatus);
-        return orderRepository.update(order);
+        return orderRepository.update(new Order(orderId,
+                new Email("default@gmail.com"),
+                address,
+                postcode,
+                new ArrayList<>(),
+                orderStatus,
+                LocalDateTime.now(),
+                LocalDateTime.now()));
     }
 
     @Override
