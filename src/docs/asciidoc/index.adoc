@@ -1,0 +1,47 @@
+= GC-Coffee API Docs
+:doctype: book
+:toc: left
+:toclevels: 2
+
+== 주문
+=== 주문 생성 API
+.request
+include::{snippets}/order-rest-controller-test/test-create-order/http-request.adoc[]
+.response
+include::{snippets}/order-rest-controller-test/test-create-order/http-response.adoc[]
+include::{snippets}/order-rest-controller-test/test-create-order/response-fields.adoc[]
+
+=== 주문 조회 API
+==== 특정 ID의 주문 조회
+.request
+include::{snippets}/order-rest-controller-test/test-find-order-by-id/http-request.adoc[]
+.response
+include::{snippets}/order-rest-controller-test/test-find-order-by-id/http-response.adoc[]
+include::{snippets}/order-rest-controller-test/test-find-order-by-id/response-fields.adoc[]
+
+==== 전체 주문 조회
+.request
+include::{snippets}/order-rest-controller-test/test-find-all-orders/http-request.adoc[]
+.response
+include::{snippets}/order-rest-controller-test/test-find-all-orders/http-response.adoc[]
+include::{snippets}/order-rest-controller-test/test-find-all-orders/response-fields.adoc[]
+
+=== 주문 업데이트 API
+.request
+include::{snippets}/order-rest-controller-test/test-update-order/http-request.adoc[]
+.response
+include::{snippets}/order-rest-controller-test/test-update-order/http-response.adoc[]
+include::{snippets}/order-rest-controller-test/test-update-order/response-fields.adoc[]
+
+=== 주문 삭제 API
+==== 특정 id의 주문 삭제 API
+.request
+include::{snippets}/order-rest-controller-test/test-delete-order-by-id/http-request.adoc[]
+.response
+include::{snippets}/order-rest-controller-test/test-delete-order-by-id/http-response.adoc[]
+
+==== 전체 주문 삭제 API
+.request
+include::{snippets}/order-rest-controller-test/test-delete-all-orders/http-request.adoc[]
+.response
+include::{snippets}/order-rest-controller-test/test-delete-all-orders/http-response.adoc[]
