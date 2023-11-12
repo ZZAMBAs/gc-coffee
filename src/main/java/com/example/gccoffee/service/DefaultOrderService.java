@@ -1,5 +1,6 @@
 package com.example.gccoffee.service;
 
+import com.example.gccoffee.exception.EntityNotFoundException;
 import com.example.gccoffee.model.Email;
 import com.example.gccoffee.model.Order;
 import com.example.gccoffee.model.OrderItem;
@@ -33,6 +34,15 @@ public class DefaultOrderService implements OrderService {
                 LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS));
 
         return orderRepository.insert(order);
+    }
+
+    @Override
+    public Order update(UUID orderId, String address, String postcode, OrderStatus orderStatus) {
+        Order order = this.findOrderById(orderId)
+                .orElseThrow(() -> new EntityNotFoundException("주문을 찾을 수 없습니다."));
+
+        order.changeInfo(address, postcode, orderStatus);
+        return orderRepository.update(order);
     }
 
     @Override

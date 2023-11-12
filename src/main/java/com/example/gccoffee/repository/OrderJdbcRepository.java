@@ -52,7 +52,7 @@ public class OrderJdbcRepository implements OrderRepository {
                         "oi.product_id, oi.category, oi.price, oi.quantity FROM orders o JOIN order_items oi ON o.order_id = oi.order_id " +
                         "WHERE o.order_id = UUID_TO_BIN(:orderId) " +
                         "ORDER BY o.order_id",
-                Collections.singletonMap("orderId", orderId),
+                Collections.singletonMap("orderId", orderId.toString().getBytes()),
                 this::orderResultSetExtractor).stream().findFirst();
     }
 
@@ -66,8 +66,8 @@ public class OrderJdbcRepository implements OrderRepository {
 
     @Override
     public void deleteById(UUID orderId) {
-        jdbcTemplate.update("DELETE FROM orders WHERE order_id = :orderId",
-                Collections.singletonMap("orderId", orderId));
+        jdbcTemplate.update("DELETE FROM orders WHERE order_id = UUID_TO_BIN(:orderId)",
+                Collections.singletonMap("orderId", orderId.toString().getBytes()));
     }
 
     @Override

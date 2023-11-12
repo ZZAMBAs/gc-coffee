@@ -25,18 +25,10 @@ public class Order {
         this.updatedAt = updatedAt;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-        this.updatedAt = LocalDateTime.now();
-    }
-
-    public void setPostcode(String postcode) {
-        this.postcode = postcode;
-        this.updatedAt = LocalDateTime.now();
-    }
-
-    public void setOrderStatus(OrderStatus orderStatus) {
-        this.orderStatus = orderStatus;
+    public void changeInfo(String address, String postcode, OrderStatus orderStatus) {
+        this.address = (address != null ? address : this.address);
+        this.postcode = (postcode != null ? postcode : this.postcode);
+        this.orderStatus = (orderStatus != null ? orderStatus : this.orderStatus);
         this.updatedAt = LocalDateTime.now();
     }
 
