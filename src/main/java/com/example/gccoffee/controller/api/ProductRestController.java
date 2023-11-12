@@ -3,7 +3,7 @@ package com.example.gccoffee.controller.api;
 import com.example.gccoffee.controller.dto.ProductRequest;
 import com.example.gccoffee.model.Category;
 import com.example.gccoffee.model.Product;
-import com.example.gccoffee.service.ProductService;
+import com.example.gccoffee.service.product.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

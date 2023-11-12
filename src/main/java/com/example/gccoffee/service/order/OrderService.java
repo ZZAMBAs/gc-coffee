@@ -1,4 +1,4 @@
-package com.example.gccoffee.service;
+package com.example.gccoffee.service.order;
 
 import com.example.gccoffee.model.Email;
 import com.example.gccoffee.model.Order;

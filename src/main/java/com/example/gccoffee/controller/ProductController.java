@@ -2,7 +2,7 @@ package com.example.gccoffee.controller;
 
 import com.example.gccoffee.controller.dto.ProductRequest;
 import com.example.gccoffee.model.Product;
-import com.example.gccoffee.service.ProductService;
+import com.example.gccoffee.service.product.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

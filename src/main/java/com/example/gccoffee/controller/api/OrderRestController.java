@@ -5,7 +5,7 @@ import com.example.gccoffee.controller.dto.OrderRequest;
 import com.example.gccoffee.exception.EntityNotFoundException;
 import com.example.gccoffee.model.Email;
 import com.example.gccoffee.model.Order;
-import com.example.gccoffee.service.OrderService;
+import com.example.gccoffee.service.order.OrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 

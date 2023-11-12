@@ -1,4 +1,4 @@
-package com.example.gccoffee.repository;
+package com.example.gccoffee.repository.order;
 
 import com.example.gccoffee.model.*;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;

@@ -1,11 +1,11 @@
-package com.example.gccoffee.service;
+package com.example.gccoffee.service.order;
 
 import com.example.gccoffee.exception.EntityNotFoundException;
 import com.example.gccoffee.model.Email;
 import com.example.gccoffee.model.Order;
 import com.example.gccoffee.model.OrderItem;
 import com.example.gccoffee.model.OrderStatus;
-import com.example.gccoffee.repository.OrderRepository;
+import com.example.gccoffee.repository.order.OrderRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
