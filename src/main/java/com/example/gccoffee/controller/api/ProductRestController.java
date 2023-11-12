@@ -54,11 +54,15 @@ public class ProductRestController {
         return ResponseEntity.ok(updatedProduct);
     }
 
-    @DeleteMapping("/api/v1/products")
-    public void deleteProduct(@RequestParam Optional<UUID> productId) {
+    @DeleteMapping("/api/v1/products/{productId}")
+    public void deleteProductById(@PathVariable UUID productId) {
         log.info(productId.toString());
 
-        productId.ifPresentOrElse(productService::deleteProductById,
-                productService::deleteAllProducts);
+        productService.deleteProductById(productId);
+    }
+
+    @DeleteMapping("/api/v1/products")
+    public void deleteProductAll() {
+        productService.deleteAllProducts();
     }
 }
