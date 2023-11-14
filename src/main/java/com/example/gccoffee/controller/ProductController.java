@@ -53,4 +53,15 @@ public class ProductController {
                 productRequest.description());
         return "redirect:/products";
     }
+
+    @PostMapping("/products/{productId}")
+    public String updateProduct(ProductRequest productRequest, @PathVariable UUID productId) {
+        productService.updateProduct(productId,
+                productRequest.productName(),
+                productRequest.category(),
+                productRequest.price(),
+                productRequest.description());
+
+        return "redirect:/products";
+    }
 }
