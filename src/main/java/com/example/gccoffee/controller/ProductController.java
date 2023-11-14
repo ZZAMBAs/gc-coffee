@@ -1,14 +1,17 @@
 package com.example.gccoffee.controller;
 
 import com.example.gccoffee.controller.dto.ProductRequest;
+import com.example.gccoffee.exception.EntityNotFoundException;
 import com.example.gccoffee.model.Product;
 import com.example.gccoffee.service.product.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class ProductController {
@@ -19,7 +22,7 @@ public class ProductController {
     }
 
     @GetMapping("/products")
-    public String productPage(Model model) {
+    public String showProducts(Model model) {
         List<Product> products = productService.getAllProducts();
 
         model.addAttribute("products", products);
@@ -27,13 +30,23 @@ public class ProductController {
         return "product-list";
     }
 
+    @GetMapping("/products/{productId}")
+    public String showProductDetails(@PathVariable UUID productId, Model model) {
+        Product product = productService.getProductById(productId)
+                .orElseThrow(() -> new EntityNotFoundException("해당하는 Product가 없습니다."));
+
+        model.addAttribute("product", product);
+
+        return "product-details";
+    }
+
     @GetMapping("/new-product")
-    public String newProductPage() {
+    public String showCreatePage() {
         return "new-product";
     }
 
     @PostMapping("/products")
-    public String newProduct(ProductRequest productRequest) {
+    public String createProduct(ProductRequest productRequest) {
         productService.createProduct(productRequest.productName(),
                 productRequest.category(),
                 productRequest.price(),

@@ -12,18 +12,18 @@
 <form action="#" method="post">
     <div class="mb-3">
         <label for="product-id" class="form-label">ID</label>
-        <input readonly type="text" class="form-control" id="product-id" th:name="productId" th:value="*{getProductId()}">
+        <input readonly type="text" class="form-control" id="product-id" th:name="productId" th:value="*{productId}">
     </div>
     <div class="mb-3">
         <label for="product-name" class="form-label">상품 이름</label>
-        <input type="text" class="form-control" id="product-name" th:name="productName" th:value="*{getProductName()}">
+        <input type="text" class="form-control" id="product-name" th:name="productName" th:value="*{productName}">
     </div>
     <div class="mb-3">
         <label for="product-category" class="form-label">카테고리</label>
         <select id="product-category" th:field="*{category}" th:name="category" class="form-select">
             <optgroup label="Product Category">
-                <option value="COFFEE_BEAN_PACKAGE" th:selected="${*{getCategory.toString()}.equals('COFFEE_BEAN_PACKAGE')}">Coffee bean package</option>
-                <option value="COFFEE_TRASH" th:selected="${*{getCategory.toString()}.equals('COFFEE_TRASH')}">Coffee trash</option>
+                <option value="COFFEE_BEAN_PACKAGE" th:selected="*{category.toString().equals('COFFEE_BEAN_PACKAGE')}">Coffee bean package</option>
+                <option value="COFFEE_TRASH" th:selected="*{category.toString().equals('COFFEE_TRASH')}">Coffee trash</option>
             </optgroup>
         </select>
     </div>
@@ -38,12 +38,12 @@
     <div class="mb-3">
         <label for="product-created-at" class="form-label">생성 일자</label>
         <input readonly type="text" class="form-control" th:name="createdAt" id="product-created-at"
-               th:value="${#temporals.format(*{getCreatedAt()}, 'yyyy-MM-dd HH:mm:ss:SSS')}">
+               th:value="${#temporals.format(product.getCreatedAt(), 'yyyy-MM-dd HH:mm:ss:SSS')}">
     </div>
     <div class="mb-3">
         <label for="product-updated-at" class="form-label">최근 업데이트 일자</label>
         <input readonly type="text" class="form-control" th:name="updatedAt" id="product-updated-at"
-               th:value="${#temporals.format(*{getUpdatedAt()}, 'yyyy-MM-dd HH:mm:ss:SSS')}">
+               th:value="${#temporals.format(product.getUpdatedAt(), 'yyyy-MM-dd HH:mm:ss:SSS')}">
     </div>
 
     <div class="d-flex justify-content-end ">
